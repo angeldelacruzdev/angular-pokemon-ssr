@@ -1,16 +1,25 @@
 <h1 class="text-3xl">Listado de Pokémons</h1>
-<h2 class="text-xl">Página actual: {{currentPage()}}</h2>
+<h2 class="text-xl">Página actual: {{ currentPage() }}</h2>
 
 <hr class="my-2" />
-<app-pokemon-list [pokemons]="pokemons()" />
-<!-- @if(!isLoading()){
 
+@if(pokemons()){
+<app-pokemon-list [pokemons]="pokemons()" />
 }@else {
 <pokemon-list-skeleton />
-} -->
+}
 
 <!-- TODO: pagination with button -->
 <div class="flex justify-between">
-  <button class="mt-2" (click)="loadPokemons(-1)">Anteriores</button>
-  <button class="mt-2" (click)="loadPokemons(+1)">Siguiente</button>
+  <button
+    class="mt-2"
+    [disabled]="currentPage() === 1"
+    (click)="loadPokemons(-1)"
+    [routerLink]="['/pokemons/page', currentPage()! - 1]"
+  >
+    Anteriores
+  </button>
+  <button class="mt-2" [routerLink]="['/pokemons/page', currentPage()! + 1]">
+    Siguiente
+  </button>
 </div>

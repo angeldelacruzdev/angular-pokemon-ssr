@@ -18,7 +18,7 @@ export class PokemonsService {
 
 
     page = Math.max(0, page);
-    return this.http.get<PokemonAPIResponse>(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${page * 20}`).pipe(
+    return this.http.get<PokemonAPIResponse>(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${page * 20}`).pipe(
       map(
         res => {
           const simplePokemons: SimplePokemon[] = res.results.map(pokemon => ({
